@@ -1,14 +1,14 @@
 package Programmers;
 
-import Programmers.level1.Prob12915;
+import Programmers.level1.Prob12932;
 
 public class Main {
     public static void main(String[] args) {
-        String[] strings = { "abce", "abcd", "cdx" };
-        String[] answer = new Prob12915().solution(strings, 1);
+        long n = 10000000000L;
+        int[] answer = new Prob12932().solution(n);
 
-        for (String str : answer) {
-            System.out.println("after : " + str);
+        for (int num : answer) {
+            System.out.print(num + " ");
         }
     }
 }
