@@ -2,6 +2,8 @@ package Programmers.level2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
 
 public class Prob1835 {
     public int solution(int n, String[] data) {
@@ -13,13 +15,13 @@ public class Prob1835 {
 
     private class PhotoPosition {
         char[] member;
-        ArrayList<Character> ready;
+        Stack<Character> ready;
         boolean[] visited;
         String[] rules;
 
         public PhotoPosition(char[] member, String[] rules) {
             this.member = member;
-            this.ready = new ArrayList<Character>();
+            this.ready = new Stack<Character>();
             this.visited = new boolean[member.length];
             this.rules = rules;
         }
@@ -40,8 +42,7 @@ public class Prob1835 {
                 return 0;
             }
             visited[idx] = true;
-            ready.add(member[idx]);
-            ArrayList<Character> tmp = (ArrayList<Character>) ready.clone();
+            ready.push(member[idx]);
 
             if (ready.size() == member.length) {
                 return 1;
@@ -52,7 +53,7 @@ public class Prob1835 {
                 if (!visited[i] && isPossible(i)) {
                     ret += dfs(i);
                     visited[i] = false;
-                    ready = (ArrayList<Character>) tmp.clone();
+                    ready.pop();
                 }
             }
 
@@ -61,7 +62,7 @@ public class Prob1835 {
 
         private boolean isPossible(int idx) {
             boolean ret = true;
-            ArrayList<Character> virtualReady = (ArrayList<Character>) ready.clone();
+            List<Character> virtualReady = new ArrayList(ready);
             virtualReady.add(member[idx]);
 
             for (String rule : rules) {
@@ -74,7 +75,7 @@ public class Prob1835 {
                 int realDist = Math.abs(readyIdx1 - readyIdx2) - 1;
 
                 if (readyIdx1 == -1 || readyIdx2 == -1) {
-                    break;
+                    continue;
                 } else if (op == '=') {
                     if (wishDist == realDist) {
                         continue;
@@ -96,7 +97,7 @@ public class Prob1835 {
         }
 
         private void clear() {
-            this.ready = new ArrayList<Character>();
+            this.ready = new Stack<Character>();
             Arrays.fill(visited, false);
         }
     }
