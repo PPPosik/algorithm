@@ -62,7 +62,7 @@ public class Prob1835 {
 
         private boolean isPossible(int idx) {
             boolean ret = true;
-            List<Character> virtualReady = new ArrayList(ready);
+            List<Character> virtualReady = new ArrayList<Character>(ready);
             virtualReady.add(member[idx]);
 
             for (String rule : rules) {
