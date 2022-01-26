@@ -1,15 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob72411;
+import Programmers.level2.Prob17677;
 
 public class Main {
     public static void main(String[] args) {
-        String[] orders = {"ABCD", "BA", "BC"};
-        int[] course = {2, 3, 4};
-        String[] answer = new Prob72411().solution(orders, course);
+        int answer = new Prob17677().solution("FRANCE", "french");
 
-        for(String s: answer) {
-            System.out.println(s);
-        }
+        System.out.println(answer);
     }
 }
