@@ -1,16 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob81302;
+import Programmers.level2.Prob67257;
 
 public class Main {
     public static void main(String[] args) {
-        String[][] places = { { "POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP" },
-                { "POOOX", "OXOXO", "PXXXO", "OXXXO", "OOOOO" }, { "PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX" },
-                { "OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO" }, { "PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP" } };
-        int[] answer = new Prob81302().solution(places);
+        long answer = new Prob67257().solution("100-200*300-500+20");
 
-        for (int n : answer) {
-            System.out.print(n + " ");
-        }
+        System.out.print("answer : " + answer);
     }
 }
