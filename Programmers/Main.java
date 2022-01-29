@@ -1,10 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob67257;
+import Programmers.level2.Prob42577;
 
 public class Main {
     public static void main(String[] args) {
-        long answer = new Prob67257().solution("100-200*300-500+20");
+        String[] phones = {"123", "456", "789"};
+        boolean answer = new Prob42577().solution(phones);
 
         System.out.print("answer : " + answer);
     }
