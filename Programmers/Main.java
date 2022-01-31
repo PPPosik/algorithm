@@ -1,12 +1,10 @@
 package Programmers;
 
-import Programmers.level2.Prob42577;
+import Programmers.level2.Prob86052;
 
 public class Main {
     public static void main(String[] args) {
-        String[] phones = {"123", "456", "789"};
-        boolean answer = new Prob42577().solution(phones);
-
-        System.out.print("answer : " + answer);
+        String[] grid = {"SL","LR"};
+        int[] answer = new Prob86052().solution(grid);
     }
 }
