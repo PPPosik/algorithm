@@ -1,7 +1,13 @@
 package Programmers.level2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+
+/*
+    테스트 케이스는 맞았는데 채점은 전부 틀림
+    아예 새로 풀어야 할 듯
+*/
 
 public class Prob86052 {
     final int[] dy = { 0, 1, 0, -1 };
@@ -28,22 +34,17 @@ public class Prob86052 {
             }
         }
 
-        for (PosPair pair : path) {
-            System.out.println(pair.toString() + " " + pair.hashCode());
-        }
-
         int[] answer = new int[tmp.size()];
         for (int i = 0; i < answer.length; i++) {
             answer[i] = tmp.get(i);
         }
+        Arrays.sort(answer);
 
         return answer;
     }
 
     private int move(Pos from, Pos to, int depth) {
-        if (depth > 10)
-            return 0;
-        if (!path.add(new PosPair(from, to))) {
+        if (!path.add(new PosPair(from.clone(), to.clone()))) {
             return depth;
         }
         System.out.println(" (" + from.getY() + ", " + from.getX() + ") (" +
@@ -93,8 +94,8 @@ public class Prob86052 {
     }
 
     private class PosPair {
-        Pos first;
-        Pos second;
+        public Pos first;
+        public Pos second;
 
         private PosPair(Pos first, Pos second) {
             this.first = first;
@@ -105,7 +106,6 @@ public class Prob86052 {
         public boolean equals(Object obj) {
             if (obj instanceof PosPair) {
                 PosPair tmp = (PosPair) obj;
-                // return true;
                 return tmp.first.equals(this.first) && tmp.second.equals(this.second);
             }
 
@@ -123,9 +123,9 @@ public class Prob86052 {
         }
     }
 
-    private class Pos {
-        int y;
-        int x;
+    private class Pos implements Cloneable {
+        private int y;
+        private int x;
 
         private Pos(int y, int x) {
             this.y = y;
@@ -152,7 +152,6 @@ public class Prob86052 {
         public boolean equals(Object obj) {
             if (obj instanceof Pos) {
                 Pos tmp = (Pos) obj;
-                // return true;
                 return tmp.getY() == this.getY() && tmp.getX() == this.getX();
             }
 
@@ -167,6 +166,16 @@ public class Prob86052 {
         @Override
         public String toString() {
             return y + "" + x;
+        }
+
+        public Pos clone() {
+            Pos obj = null;
+            try {
+                obj = (Pos) super.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            return obj;
         }
     }
 }
