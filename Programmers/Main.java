@@ -1,12 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob42746;
+import Programmers.level2.Prob42839;
 
 public class Main {
     public static void main(String[] args) {
-        int[] numbers = { 0, 0, 0 };
-        String answer = new Prob42746().solution(numbers);
+        int answer = new Prob42839().solution("011");
 
-        System.out.print(answer);
+        System.out.print("answer : " + answer);
     }
 }
