@@ -1,10 +1,10 @@
 package Programmers;
 
-import Programmers.level2.Prob42839;
+import Programmers.level2.Prob42860;
 
 public class Main {
     public static void main(String[] args) {
-        int answer = new Prob42839().solution("011");
+        int answer = new Prob42860().solution("ABAAB");
 
         System.out.print("answer : " + answer);
     }
