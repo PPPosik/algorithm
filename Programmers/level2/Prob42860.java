@@ -10,45 +10,51 @@ public class Prob42860 {
             if (charArr[i] == 'A') {
                 changed[i] = true;
             }
+        }
 
+        answer = dfs(charArr, changed, 0);
+
+        for (int i = 0; i < charArr.length; i++) {
             answer += getMinMove(charArr[i]);
         }
 
-        int cursor = 0;
-        while (true) {
-            int right = -1;
-            int left = -1;
+        return answer;
+    }
 
-            changed[cursor] = true;
+    private int dfs(char[] charArr, boolean[] changed, int cursor) {
+        int ret = 0;
+        int right = -1;
+        int left = -1;
 
-            for (int i = 0; i < charArr.length; i++) {
-                if (!changed[getCursor(cursor + i, charArr.length)]) {
-                    right = i;
-                    break;
-                }
-            }
+        changed[cursor] = true;
 
-            for (int i = 0; i < charArr.length; i++) {
-                if (!changed[getCursor(cursor - i, charArr.length)]) {
-                    left = i;
-                    break;
-                }
-            }
-
-            if (right != -1 && left != -1) {
-                if (right <= left) {
-                    answer += right;
-                    cursor = getCursor(cursor + right, charArr.length);
-                } else {
-                    answer += left;
-                    cursor = getCursor(cursor - left, charArr.length);
-                }
-            } else {
+        for (int i = 0; i < charArr.length; i++) {
+            if (!changed[getCursor(cursor + i, charArr.length)]) {
+                right = i;
                 break;
             }
         }
 
-        return answer;
+        if (right != -1) {
+            int newCursor = getCursor(cursor + right, charArr.length);
+            ret = right + dfs(charArr, changed, newCursor);
+            changed[newCursor] = false;
+        }
+
+        for (int i = 0; i < charArr.length; i++) {
+            if (!changed[getCursor(cursor - i, charArr.length)]) {
+                left = i;
+                break;
+            }
+        }
+
+        if (left != -1) {
+            int newCursor = getCursor(cursor - left, charArr.length);
+            ret = Math.min(ret, left + dfs(charArr, changed, newCursor));
+            changed[newCursor] = false;
+        }
+
+        return ret;
     }
 
     private int getCursor(int cursor, int length) {
