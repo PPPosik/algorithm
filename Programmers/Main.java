@@ -1,15 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob42890;
+import Programmers.level2.Prob1844;
 
 public class Main {
     public static void main(String[] args) {
-        String[][] relation = {
-        {"a","1","aaa","c","ng"},
-        {"a","1","bbb","e","g"},
-        {"c","1","aaa","d","ng"},
-        {"d","2","bbb","d","ng"}};
-        int answer = new Prob42890().solution(relation);
+        int[][] maps = {{1,0,1,1,1},{1,0,1,0,1},{1,0,1,1,1},{1,1,1,0,0},{0,0,0,0,1}};
+        int answer = new Prob1844().solution(maps);
 
         System.out.print("answer : " + answer);
     }
