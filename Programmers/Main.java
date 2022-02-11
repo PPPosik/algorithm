@@ -1,11 +1,10 @@
 package Programmers;
 
-import Programmers.level2.Prob1844;
+import Programmers.level2.Prob12985;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] maps = {{1,0,1,1,1},{1,0,1,0,1},{1,0,1,1,1},{1,1,1,0,1},{0,0,0,0,1}};
-        int answer = new Prob1844().solution(maps);
+        int answer = new Prob12985().solution(8, 4, 7);
 
         System.out.print("answer : " + answer);
     }
