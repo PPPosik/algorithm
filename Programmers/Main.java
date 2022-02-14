@@ -1,12 +1,14 @@
 package Programmers;
 
-import Programmers.level2.Prob42747;
+import Programmers.level2.Prob42584;
 
 public class Main {
     public static void main(String[] args) {
-        int[] citations = { 0, 0, 0, 0, 1 };
-        int answer = new Prob42747().solution(citations);
+        int[] prices = { 1, 2, 3, 2, 3 };
+        int[] answer = new Prob42584().solution(prices);
 
-        System.out.print("answer : " + answer);
+        for (int n : answer) {
+            System.out.print(n + " ");
+        }
     }
 }
