@@ -1,11 +1,10 @@
 package Programmers;
 
-import Programmers.level2.Prob12905;
+import Programmers.level2.Prob42883;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] board = {{1, 0}};
-        int answer = new Prob12905().solution(board);
+        String answer = new Prob42883().solution("4177252841", 4);
 
         System.out.println("answer : " + answer);
     }
