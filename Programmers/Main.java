@@ -1,12 +1,12 @@
 package Programmers;
 
-import Programmers.level3.Prob67258;
+import Programmers.level2.Prob49993;
 
 public class Main {
     public static void main(String[] args) {
-        String[] str = {"A","B","B","C","B","A"};
-        int[] answer = new Prob67258().solution(str);
+        String[] str = { "BACDE", "CBADF", "AECB", "BDA" };
+        int answer = new Prob49993().solution("CBD", str);
 
-        System.out.println("answer : " + answer[0] + " " + answer[1]);
+        System.out.println("answer : " + answer);
     }
 }
