@@ -1,12 +1,14 @@
 package Programmers;
 
-import Programmers.level2.Prob42583;
+import Programmers.level2.Prob87390;
 
 public class Main {
     public static void main(String[] args) {
-        int[] trucks = {2, 2, 2, 2, 1, 1, 1, 1, 1};
-        int answer = new Prob42583().solution(5, 5, trucks); // 19
+        int[] answer = new Prob87390().solution(4, 7, 14);
 
-        System.out.println("answer : " + answer);
+        System.out.print("answer : ");
+        for (int n : answer) {
+            System.out.print(n + " ");
+        }
     }
 }
