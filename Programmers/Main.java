@@ -1,14 +1,12 @@
 package Programmers;
 
-import Programmers.level2.Prob87390;
+import Programmers.level2.Prob17680;
 
 public class Main {
     public static void main(String[] args) {
-        int[] answer = new Prob87390().solution(4, 7, 14);
+        String[] cities = { "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul" };
+        int answer = new Prob17680().solution(3, cities);
 
-        System.out.print("answer : ");
-        for (int n : answer) {
-            System.out.print(n + " ");
-        }
+        System.out.print("answer : " + answer);
     }
 }
