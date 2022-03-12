@@ -1,11 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob12978;
+import Programmers.level2.Prob87946;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] road = {{1,2,1},{2,3,3},{5,2,2},{1,4,2},{5,3,1},{5,4,2}};
-        int answer = new Prob12978().solution(5, road, 3);
+        int[][] dungeons = { { 80, 20 }, { 50, 40 }, { 30, 10 } };
+        int answer = new Prob87946().solution(80, dungeons);
 
         System.out.print("answer : " + answer);
     }
