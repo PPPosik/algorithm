@@ -1,11 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob87946;
+import Programmers.level2.Prob17679;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] dungeons = { { 80, 20 }, { 50, 40 }, { 30, 10 } };
-        int answer = new Prob87946().solution(80, dungeons);
+        String[] board = {"CCBDE", "AAADE", "AAABF", "CCBBF"};
+        int answer = new Prob17679().solution(4, 5, board);
 
         System.out.print("answer : " + answer);
     }
