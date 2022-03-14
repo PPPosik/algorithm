@@ -1,12 +1,15 @@
 package Programmers;
 
-import Programmers.level2.Prob17679;
+import Programmers.level2.Prob68645;
 
 public class Main {
     public static void main(String[] args) {
-        String[] board = {"CCBDE", "AAADE", "AAABF", "CCBBF"};
-        int answer = new Prob17679().solution(4, 5, board);
+        int[] answer = new Prob68645().solution(4);
 
-        System.out.print("answer : " + answer);
+        System.out.print("answer : ");
+        for (int n : answer) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
     }
 }
