@@ -1,16 +1,12 @@
 package Programmers;
 
-import Programmers.level2.Prob77885;
+import Programmers.level2.Prob12953;
 
 public class Main {
     public static void main(String[] args) {
-        long[] numbers = { 0, 51, 2, 7 };
-        long[] answer = new Prob77885().solution(numbers);
+        int[] arr = {60, 48, 40}; // 240
+        int answer = new Prob12953().solution(arr);
 
-        System.out.print("answer : ");
-        for (long n : answer) {
-            System.out.print(n + " ");
-        }
-        System.out.println();
+        System.out.print("answer : " + answer);
     }
 }
