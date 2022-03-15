@@ -1,11 +1,12 @@
 package Programmers;
 
-import Programmers.level2.Prob12953;
+import Programmers.level2.Prob12941;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {60, 48, 40}; // 240
-        int answer = new Prob12953().solution(arr);
+        int[] A = {1, 2};
+        int[] B = {3, 4};
+        int answer = new Prob12941().solution(A, B);
 
         System.out.print("answer : " + answer);
     }
