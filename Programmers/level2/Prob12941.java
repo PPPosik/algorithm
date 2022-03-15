@@ -17,7 +17,6 @@ public class Prob12941 {
         Collections.sort(list, Collections.reverseOrder());
 
         for (int i = 0; i < A.length; i++) {
-            System.out.println(A[i] + " " + list.get(i));
             answer += A[i] * list.get(i);
         }
 
