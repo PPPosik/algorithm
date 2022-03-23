@@ -1,14 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob70129;
+import Programmers.level2.Prob92335;
 
 public class Main {
     public static void main(String[] args) {
-        int[] answer = new Prob70129().solution("110010101001");
+        int answer = new Prob92335().solution(437674, 3);
 
-        System.out.print("answer : ");
-        for (int n : answer) {
-            System.out.print(n + " ");
-        }
+        System.out.print("answer : " + answer);
     }
 }
