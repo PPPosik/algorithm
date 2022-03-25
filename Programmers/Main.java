@@ -1,14 +1,11 @@
 package Programmers;
 
-import Programmers.level2.Prob17684;
+import Programmers.level2.Prob49994;
 
 public class Main {
     public static void main(String[] args) {
-        int[] answer = new Prob17684().solution("TOBEORNOTTOBEORTOBEORNOT");
+        int answer = new Prob49994().solution("UDU");
 
-        System.out.print("answer : ");
-        for(int n: answer) {
-            System.out.print(n + " ");
-        }
+        System.out.print("answer : " + answer);
     }
 }
