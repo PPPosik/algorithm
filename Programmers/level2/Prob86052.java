@@ -2,180 +2,154 @@ package Programmers.level2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-
-/*
-    테스트 케이스는 맞았는데 채점은 전부 틀림
-    아예 새로 풀어야 할 듯
-*/
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Prob86052 {
+    final int[] dx = { 1, 0, -1, 0 };
     final int[] dy = { 0, 1, 0, -1 };
-    final int[] dx = { -1, 0, 1, 0 };
-
-    HashSet<PosPair> path;
-    char[][] map;
 
     public int[] solution(String[] grid) {
-        path = new HashSet<PosPair>();
-        map = new char[grid.length][];
+        char[][] nodes = new char[grid.length][];
+        Set<PosPair> path = new LinkedHashSet<>();
+        List<Integer> answerList = new ArrayList<>();
 
-        for (int i = 0; i < map.length; i++) {
-            map[i] = grid[i].toCharArray();
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i] = grid[i].toCharArray();
         }
 
-        ArrayList<Integer> tmp = new ArrayList<Integer>();
+        for (int i = 0; i < nodes.length; i++) {
+            for (int j = 0; j < nodes[i].length; j++) {
+                int[] result = addPath(nodes, path, i, j);
 
-        for (int i = 0; i < dy.length; i++) {
-            int moveCnt = move(new Pos(dy[i], dx[i]), new Pos(0, 0), -1);
-            System.out.println("----------");
-            if (moveCnt > 0) {
-                tmp.add(moveCnt);
+                for (int n : result) {
+                    if (n > 0) {
+                        answerList.add(n);
+                    }
+                }
             }
         }
 
-        int[] answer = new int[tmp.size()];
+        for (PosPair p : path) {
+        System.out.println("(" + p.fromY + ", " + p.fromX + ") (" + p.toY + ", " + p.toX + ")");
+        }
+
+        int[] answer = new int[answerList.size()];
         for (int i = 0; i < answer.length; i++) {
-            answer[i] = tmp.get(i);
+            answer[i] = answerList.get(i);
         }
         Arrays.sort(answer);
 
         return answer;
     }
 
-    private int move(Pos from, Pos to, int depth) {
-        if (!path.add(new PosPair(from.clone(), to.clone()))) {
-            return depth;
+    private int[] addPath(char[][] nodes, Set<PosPair> path, int fromY, int fromX) {
+        int[] ret = new int[4];
+        int[] fromPos = new int[2];
+        int[] toPos = new int[2];
+
+        for (int i = 0; i < 4; i++) {
+            fromPos[0] = fromY;
+            fromPos[1] = fromX;
+            toPos = movePos(nodes, fromY, fromX, fromY - dy[i], fromX - dx[i]);
+
+            int retVal = 0;
+            boolean isSamePath = false;
+            while (path.add(new PosPair(fromPos[0], fromPos[1], toPos[0], toPos[1]))) {
+                if (!isSamePath) {
+                    retVal++;
+                }
+
+                if (0 <= toPos[0] && toPos[0] < nodes.length && 0 <= toPos[1] && toPos[1] < nodes[0].length) {
+                    int[] tmp = movePos(nodes, toPos[0], toPos[1], fromPos[0], fromPos[1]);
+                    fromPos = toPos;
+                    toPos = tmp;
+
+                    isSamePath = false;
+                } else {
+                    int tmpY = toPos[0] - fromPos[0];
+                    int tmpX = toPos[1] - fromPos[1];
+
+                    toPos[0] = toPos[0] < 0 ? nodes.length - 1 : toPos[0] % nodes.length;
+                    toPos[1] = toPos[1] < 0 ? nodes[0].length - 1 : toPos[1] % nodes[0].length;
+                    fromPos[0] = toPos[0] - tmpY;
+                    fromPos[1] = toPos[1] - tmpX;
+
+                    isSamePath = true;
+                }
+            }
+            ret[i] = retVal;
         }
-        System.out.println(" (" + from.getY() + ", " + from.getX() + ") (" +
-                to.getY() + ", " + to.getX() + ") ");
 
-        Pos nextPos = new Pos(to.getY() < 0 ? map.length - 1 : to.getY() % map.length,
-                to.getX() < 0 ? map[0].length - 1 : to.getX() % map[0].length);
-        if (map[nextPos.getY()][nextPos.getX()] == 'S') {
-            nextPos = straight(from, to);
-        } else if (map[nextPos.getY()][nextPos.getX()] == 'L') {
-            nextPos = left(from, to);
-        } else if (map[nextPos.getY()][nextPos.getX()] == 'R') {
-            nextPos = right(from, to);
+        return ret;
+    }
+
+    private int[] movePos(char[][] nodes, int fromY, int fromX, int beforeY, int beforeX) {
+        int[] toPos = new int[2];
+
+        if (nodes[fromY][fromX] == 'S') {
+            toPos = moveS(beforeY, beforeX, fromY, fromX);
+        } else if (nodes[fromY][fromX] == 'L') {
+            toPos = moveL(beforeY, beforeX, fromY, fromX);
+        } else if (nodes[fromY][fromX] == 'R') {
+            toPos = moveR(beforeY, beforeX, fromY, fromX);
         }
 
-        return move(to, nextPos, depth + 1);
+        return toPos;
     }
 
-    private Pos straight(Pos from, Pos to) {
-        int dy = to.getY() - from.getY();
-        int dx = to.getX() - from.getX();
+    private int[] moveS(int beforeY, int beforeX, int fromY, int fromX) {
+        int dy = fromY - beforeY;
+        int dx = fromX - beforeX;
 
-        to.setY(to.getY() < 0 ? map.length - 1 : to.getY() % map.length);
-        to.setX(to.getX() < 0 ? map[0].length - 1 : to.getX() % map[0].length);
-
-        return new Pos(to.getY() + dy, to.getX() + dx);
+        return new int[] { fromY + dy, fromX + dx };
     }
 
-    private Pos left(Pos from, Pos to) {
-        int dy = to.getY() - from.getY();
-        int dx = to.getX() - from.getX();
+    private int[] moveR(int beforeY, int beforeX, int fromY, int fromX) {
+        int dy = fromY - beforeY;
+        int dx = fromX - beforeX;
 
-        to.setY(to.getY() < 0 ? map.length - 1 : to.getY() % map.length);
-        to.setX(to.getX() < 0 ? map[0].length - 1 : to.getX() % map[0].length);
-
-        return new Pos(to.getY() + -1 * dx, to.getX() + dy);
+        return new int[] { fromY + dx, fromX - dy };
     }
 
-    private Pos right(Pos from, Pos to) {
-        int dy = to.getY() - from.getY();
-        int dx = to.getX() - from.getX();
+    private int[] moveL(int beforeY, int beforeX, int fromY, int fromX) {
+        int dy = fromY - beforeY;
+        int dx = fromX - beforeX;
 
-        to.setY(to.getY() < 0 ? map.length - 1 : to.getY() % map.length);
-        to.setX(to.getX() < 0 ? map[0].length - 1 : to.getX() % map[0].length);
-
-        return new Pos(to.getY() + dx, to.getX() + -1 * dy);
+        return new int[] { fromY - dx, fromX + dy };
     }
 
     private class PosPair {
-        public Pos first;
-        public Pos second;
+        int fromY, fromX;
+        int toY, toX;
 
-        private PosPair(Pos first, Pos second) {
-            this.first = first;
-            this.second = second;
+        public PosPair(int fromY, int fromX, int toY, int toX) {
+            this.fromY = fromY;
+            this.fromX = fromX;
+            this.toY = toY;
+            this.toX = toX;
+        }
+
+        @Override
+        public String toString() {
+            return "" + fromY + fromX + toY + toX;
+        }
+
+        @Override
+        public int hashCode() {
+            return toString().hashCode();
         }
 
         @Override
         public boolean equals(Object obj) {
             if (obj instanceof PosPair) {
                 PosPair tmp = (PosPair) obj;
-                return tmp.first.equals(this.first) && tmp.second.equals(this.second);
+
+                return hashCode() == tmp.hashCode();
+            } else {
+                return false;
             }
-
-            return false;
-        }
-
-        @Override
-        public int hashCode() {
-            return this.toString().hashCode();
-        }
-
-        @Override
-        public String toString() {
-            return first.toString() + second.toString();
-        }
-    }
-
-    private class Pos implements Cloneable {
-        private int y;
-        private int x;
-
-        private Pos(int y, int x) {
-            this.y = y;
-            this.x = x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj instanceof Pos) {
-                Pos tmp = (Pos) obj;
-                return tmp.getY() == this.getY() && tmp.getX() == this.getX();
-            }
-
-            return false;
-        }
-
-        @Override
-        public int hashCode() {
-            return this.toString().hashCode();
-        }
-
-        @Override
-        public String toString() {
-            return y + "" + x;
-        }
-
-        public Pos clone() {
-            Pos obj = null;
-            try {
-                obj = (Pos) super.clone();
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
-            return obj;
         }
     }
 }
