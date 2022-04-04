@@ -1,15 +1,12 @@
 package Programmers;
 
-import Programmers.level2.Prob68936;
+import Programmers.level2.Prob86971;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] grid = {{1,1,0,0},{1,0,0,0},{1,0,0,1},{1,1,1,1}};
-        int[] answer = new Prob68936().solution(grid);
+        int[][] wires = { { 1, 3 }, { 2, 3 }, { 3, 4 }, { 4, 5 }, { 4, 6 }, { 4, 7 }, { 7, 8 }, { 7, 9 } };
+        int answer = new Prob86971().solution(9, wires);
 
-        System.out.print("answer : ");
-        for (int n : answer) {
-            System.out.print(n + " ");
-        }
+        System.out.print("answer : " + answer);
     }
 }
