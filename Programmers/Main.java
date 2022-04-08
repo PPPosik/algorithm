@@ -1,12 +1,15 @@
 package Programmers;
 
-import Programmers.level2.Prob86971;
+import Programmers.level2.Prob87377;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] wires = { { 1, 3 }, { 2, 3 }, { 3, 4 }, { 4, 5 }, { 4, 6 }, { 4, 7 }, { 7, 8 }, { 7, 9 } };
-        int answer = new Prob86971().solution(9, wires);
+        int[][] line = { { 2, -1, 4 }, { -2, -1, 4 }, { 0, -1, 1 }, { 5, -8, -12 }, { 5, 8, 12 } };
+        String[] answer = new Prob87377().solution(line);
 
-        System.out.print("answer : " + answer);
+        System.out.println("answer : ");
+        for (String s : answer) {
+            System.out.println(s);
+        }
     }
 }
