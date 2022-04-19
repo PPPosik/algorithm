@@ -1,15 +1,12 @@
 package Programmers;
 
-import Programmers.level2.Prob92342;
+import Programmers.level3.Prob17676;
 
 public class Main {
     public static void main(String[] args) {
-        int[] info = {0,0,0,0,0,0,0,0,3,4,3};
-        int[] answer = new Prob92342().solution(10, info);
+        String[] lines = {"2016-09-15 01:00:04.001 2.0s", "2016-09-15 01:00:07.000 2s"};
+        int answer = new Prob17676().solution(lines);
 
-        System.out.println("answer : ");
-        for (int n : answer) {
-            System.out.print(n + " ");
-        }
+        System.out.println("answer : " + answer);
     }
 }
