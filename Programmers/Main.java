@@ -1,11 +1,13 @@
 package Programmers;
 
-import Programmers.level3.Prob17676;
+import Programmers.level3.Prob67259;
 
 public class Main {
     public static void main(String[] args) {
-        String[] lines = {"2016-09-15 01:00:04.001 2.0s", "2016-09-15 01:00:07.000 2s"};
-        int answer = new Prob17676().solution(lines);
+        // int[][] board = {{0,0,0,0,0,0,0,1},{0,0,0,0,0,0,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,1,0,0,0},{0,0,0,1,0,0,0,1},{0,0,1,0,0,0,1,0},{0,1,0,0,0,1,0,0},{1,0,0,0,0,0,0,0}};
+        int[][] board = {{0,0,0,0,0,0},{0,1,1,1,1,0},{0,0,1,0,0,0},{1,0,0,1,0,1},{0,1,0,0,0,1},{0,0,0,0,0,0}};
+        // int [][] board = {{0,0,1,0},{0,0,0,0},{0,1,0,1},{1,0,0,0}};
+        int answer = new Prob67259().solution(board);
 
         System.out.println("answer : " + answer);
     }
