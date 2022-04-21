@@ -1,14 +1,15 @@
 package Programmers;
 
-import Programmers.level3.Prob67259;
+import Programmers.level2.Prob86052;
 
 public class Main {
     public static void main(String[] args) {
-        // int[][] board = {{0,0,0,0,0,0,0,1},{0,0,0,0,0,0,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,1,0,0,0},{0,0,0,1,0,0,0,1},{0,0,1,0,0,0,1,0},{0,1,0,0,0,1,0,0},{1,0,0,0,0,0,0,0}};
-        int[][] board = {{0,0,0,0,0,0},{0,1,1,1,1,0},{0,0,1,0,0,0},{1,0,0,1,0,1},{0,1,0,0,0,1},{0,0,0,0,0,0}};
-        // int [][] board = {{0,0,1,0},{0,0,0,0},{0,1,0,1},{1,0,0,0}};
-        int answer = new Prob67259().solution(board);
+        String[] grid = {"SL","LR"};
+        int[] answer = new Prob86052().solution(grid);
 
-        System.out.println("answer : " + answer);
+        System.out.println("answer : ");
+        for(int n: answer) {
+            System.out.print(n + " ");
+        }
     }
 }
