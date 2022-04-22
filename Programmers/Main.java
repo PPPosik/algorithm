@@ -1,15 +1,12 @@
 package Programmers;
 
-import Programmers.level2.Prob86052;
+import Programmers.level3.Prob72413;
 
 public class Main {
     public static void main(String[] args) {
-        String[] grid = {"SL","LR"};
-        int[] answer = new Prob86052().solution(grid);
+        int[][] fares = {{5, 7, 9}, {4, 6, 4}, {3, 6, 1}, {3, 2, 3}, {2, 1, 6}};
+        int answer = new Prob72413().solution(7, 3, 4, 1, fares);
 
-        System.out.println("answer : ");
-        for(int n: answer) {
-            System.out.print(n + " ");
-        }
+        System.out.println("answer : " + answer);
     }
 }
