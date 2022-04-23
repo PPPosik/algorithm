@@ -20,49 +20,39 @@ public class Prob72414 {
 
         Collections.sort(list, (o1, o2) -> o1.time - o2.time);
 
-        int answerSec = 0;
-        long maxTotal = 0, nowTotal = 0;
-        int startTime = 0, startK = 0, startIdx = 0;
-        int endTime = 0, endK = 0, endIdx = 0;
-        while (endTime != adv) {
-            if (list.get(endIdx).time == endTime) {
-                if (list.get(endIdx).status) {
-                    endK++;
+        int[] views = new int[99 * 60 * 60 + 59 * 60 + 59 + 1];
+        int idx = 0, k = 0;
+        for (int i = 0; i <= play; i++) {
+            if (idx < list.size() && list.get(idx).time == i) {
+                if (list.get(idx).status) {
+                    views[i] = ++k;
                 } else {
-                    endK--;
+                    views[i] = k--;
                 }
-                endIdx++;
+                idx++;
             }
-            nowTotal += endK;
-
-            endTime++;
+            else {
+                views[i] = k;
+            }
+            // if(i % 3600 == 0) System.out.println(secToTime(i) + " " + secToTime((int)views[i]));
         }
-
-        for (int time = 1; time <= play - adv; time++) {
-            if (endIdx < list.size() && list.get(endIdx).time == endTime + time) {
-                if (list.get(endIdx).status) {
-                    endK++;
-                } else {
-                    endK--;
-                }
-                endIdx++;
+        
+        int answerSec = 0;
+        long maxView = 0;
+        long nowView = 0;
+        for(int i = 0; i < adv; i++) {
+            nowView += views[i];
+        }
+        
+        for (int i = 0; i <= play - adv; i++) {
+            nowView -= views[i];
+            nowView += views[i + adv];
+            
+            if (maxView < nowView) {
+                maxView = nowView;
+                answerSec = i;
             }
-            nowTotal += endK;
-
-            nowTotal -= startK;
-            if (startIdx < list.size() && list.get(startIdx).time == startTime + time) {
-                if (list.get(startIdx).status) {
-                    startK++;
-                } else {
-                    startK--;
-                }
-                startIdx++;
-            }
-
-            if (nowTotal > maxTotal) {
-                maxTotal = nowTotal;
-                answerSec = startTime + time;
-            }
+            // if(i % 3600 == 0) System.out.println(secToTime(i) + " " + secToTime((int)nowView));
         }
 
         return secToTime(answerSec);
