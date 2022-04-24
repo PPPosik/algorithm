@@ -30,24 +30,25 @@ public class Prob72414 {
                     views[i] = k--;
                 }
                 idx++;
-            }
-            else {
+            } else {
                 views[i] = k;
             }
+
             // if(i % 3600 == 0) System.out.println(secToTime(i) + " " + secToTime((int)views[i]));
         }
-        
-        int answerSec = 0;
-        long maxView = 0;
+
         long nowView = 0;
-        for(int i = 0; i < adv; i++) {
+        for (int i = 0; i < adv; i++) {
             nowView += views[i];
+            // if(i % 3600 == 0) System.out.println(secToTime(i) + " " + secToTime((int)nowView));
         }
-        
-        for (int i = 0; i <= play - adv; i++) {
-            nowView -= views[i];
-            nowView += views[i + adv];
-            
+
+        long maxView = nowView;
+        int answerSec = 0;
+        for (int i = 1; i <= play - adv; i++) {
+            nowView -= views[i - 1];
+            nowView += views[i - 1 + adv];
+
             if (maxView < nowView) {
                 maxView = nowView;
                 answerSec = i;
