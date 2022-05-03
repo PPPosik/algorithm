@@ -1,5 +1,6 @@
 package Programmers.level3;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,7 +16,7 @@ public class Prob72415 {
             if (pos[0] == -1 && pos[1] == -1) {
                 break;
             }
-            answer += getMoveCnt(r, c, pos[0], pos[1]);
+            answer += getMoveCnt(board, r, c, pos[0], pos[1]);
 
             eraseBoard(board, r, c, pos[0], pos[1]);
 
@@ -69,11 +70,56 @@ public class Prob72415 {
         return pos;
     }
 
-    private int getMoveCnt(int beforeY, int beforeX, int afterY, int afterX) {
+    private int getMoveCnt(int[][] board, int beforeY, int beforeX, int afterY, int afterX) {
         int cnt = 1;
 
-        cnt += beforeY == afterY ? 0 : 1;
-        cnt += beforeX == afterX ? 0 : 1;
+        int[][] dp = new int[4][4];
+        for (int[] arr : dp) {
+            Arrays.fill(arr, Integer.MAX_VALUE);
+        }
+        dp[beforeY][beforeX] = 0;
+
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[] { beforeY, beforeX });
+
+        while (!queue.isEmpty()) {
+            int[] p = queue.poll();
+
+            for (int i = 0; i < 4; i++) {
+                int newY = p[0] + dy[i];
+                int newX = p[1] + dx[i];
+
+                if (0 <= newY && newY < 4 && 0 <= newX && newX < 4) {
+                    if (dp[newY][newX] > dp[p[0]][p[1]] + 1) {
+                        dp[newY][newX] = dp[p[0]][p[1]] + 1;
+                        queue.offer(new int[] { newY, newX });
+                    }
+                }
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int newY = p[0] + dy[i];
+                int newX = p[1] + dx[i];
+
+                if (0 <= newY && newY < 4 && 0 <= newX && newX < 4) {
+                    while (board[newY][newX] == 0) {
+                        if (newY + dy[i] < 0 || newY + dy[i] >= 4 || newX + dx[i] < 0 || newX + dx[i] >= 4) {
+                            break;
+                        }
+
+                        newY += dy[i];
+                        newX += dx[i];
+                    }
+
+                    if (dp[newY][newX] > dp[p[0]][p[1]] + 1) {
+                        dp[newY][newX] = dp[p[0]][p[1]] + 1;
+                        queue.offer(new int[] { newY, newX });
+                    }
+                }
+            }
+        }
+
+        cnt += dp[afterY][afterX];
 
         return cnt;
     }
