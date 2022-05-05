@@ -100,25 +100,18 @@ public class Prob72415 {
 
         for (int i = 1; i < pos.length; i++) {
             dp[i][0] = Math.min(
-                    dp[i - 1][0] + getMoveCnt(map, pos[i - 1][0], pos[i - 1][1])
-                            + getMoveCnt(map, pos[i - 1][1], pos[i][0]),
-                    dp[i - 1][1] + getMoveCnt(map, pos[i - 1][1], pos[i - 1][0])
-                            + getMoveCnt(map, pos[i - 1][0], pos[i][0]));
+                    dp[i - 1][0] + getMoveCnt(map, pos[i - 1][0], pos[i][1]),
+                    dp[i - 1][1] + getMoveCnt(map, pos[i - 1][1], pos[i][1])) + getMoveCnt(map, pos[i][1], pos[i][0]);
             dp[i][1] = Math.min(
-                    dp[i - 1][0] + getMoveCnt(map, pos[i - 1][0], pos[i - 1][1])
-                            + getMoveCnt(map, pos[i - 1][1], pos[i][1]),
-                    dp[i - 1][1] + getMoveCnt(map, pos[i - 1][1], pos[i - 1][0])
-                            + getMoveCnt(map, pos[i - 1][0], pos[i][1]));
+                    dp[i - 1][0] + getMoveCnt(map, pos[i - 1][0], pos[i][0]),
+                    dp[i - 1][1] + getMoveCnt(map, pos[i - 1][1], pos[i][0])) + getMoveCnt(map, pos[i][0], pos[i][1]);
             eraseBoard(map, cardNums[i - 1]);
         }
 
-        return Math.min(dp[cardNums.length][0] + getMoveCnt(map, pos[cardNums.length][0], pos[cardNums.length][1]),
-                dp[cardNums.length][1] + getMoveCnt(map, pos[cardNums.length][1], pos[cardNums.length][0]));
+        return Math.min(dp[cardNums.length][0], dp[cardNums.length][1]);
     }
 
     private int getMoveCnt(int[][] board, int[] pos, int[] targetPos) {
-        int cnt = 0;
-
         int[][] dp = new int[4][4];
         for (int[] arr : dp) {
             Arrays.fill(arr, Integer.MAX_VALUE);
@@ -165,9 +158,7 @@ public class Prob72415 {
             }
         }
 
-        cnt += dp[targetPos[0]][targetPos[1]];
-
-        return cnt;
+        return dp[targetPos[0]][targetPos[1]];
     }
 
     private void eraseBoard(int[][] board, int target) {
