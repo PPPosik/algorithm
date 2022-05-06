@@ -1,12 +1,12 @@
 package Programmers;
 
-import Programmers.level3.Prob92344;
+import Programmers.level3.Prob92343;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] board = { { 5, 5, 5, 5, 5 }, { 5, 5, 5, 5, 5 }, { 5, 5, 5, 5, 5 }, { 5, 5, 5, 5, 5 } };
-        int[][] skill = { { 1, 0, 0, 3, 4, 4 }, { 1, 2, 0, 2, 3, 2 }, { 2, 1, 0, 3, 1, 2 }, { 1, 0, 1, 3, 3, 1 } };
-        int answer = new Prob92344().solution(board, skill);
+        int[] info = {0, 0, 1, 1, 1, 0, 0, 0};
+        int[][] edges = {{0, 1}, {0, 2}, {1, 3}, {3, 4}, {4, 5}, {2, 6}, {2, 7}};
+        int answer = new Prob92343().solution(info, edges);
 
         System.out.println("answer : " + answer);
     }
