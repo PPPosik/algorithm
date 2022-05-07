@@ -22,11 +22,9 @@ public class Prob92343 {
         return dfs(tree, canVisit, 0, 1, 0);
     }
 
-    private int dfs(int[][] tree, boolean[] canVisit, int node, int sheep, int wolf) {
-        if(tree[node][0] == -1 && tree[node][1] == -1) {
-            return sheep;
-        }
-        
+    private int dfs(int[][] tree, boolean[] visit, int node, int sheep, int wolf) {
+        boolean[] canVisit = visit.clone();
+
         if (tree[node][0] != -1) {
             canVisit[tree[node][0]] = true;
         }
@@ -35,8 +33,8 @@ public class Prob92343 {
         }
 
         System.out.print(node + "(" + sheep + ", " + wolf + ") : ");
-        for(int i = 0; i < canVisit.length; i++) {
-            if(canVisit[i]) {
+        for (int i = 0; i < canVisit.length; i++) {
+            if (canVisit[i]) {
                 System.out.print(i + " ");
             }
         }
@@ -46,13 +44,13 @@ public class Prob92343 {
         for (int i = 0; i < canVisit.length; i++) {
             if (canVisit[i]) {
                 if (tree[i][2] == 1 && sheep > wolf + 1) {
+                    System.out.println(node + " -> " + i);
                     canVisit[i] = false;
                     ret = Math.max(ret, dfs(tree, canVisit, i, sheep, wolf + 1));
                     canVisit[i] = true;
                 } else if (tree[i][2] == 0) {
                     System.out.println(node + " -> " + i);
                     canVisit[i] = false;
-                    // 6 7 방문하면 양을 데려와야함
                     ret = Math.max(ret, dfs(tree, canVisit, i, sheep + 1, wolf));
                     canVisit[i] = true;
                 }
