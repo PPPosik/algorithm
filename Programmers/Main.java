@@ -4,8 +4,10 @@ import Programmers.level3.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] triangles = {{7}, {3, 8}, {8, 1, 0}, {2, 7, 4, 4}, {4, 5, 2, 6, 5}};
-        int answer = new Prob43105().solution(triangles);
+        int[][] key = {{1, 1}, {0, 0}};
+        int[][] lock = {{1, 0}, {1, 1}};
+
+        boolean answer = new Prob60059().solution(key, lock);
 
         System.out.println("answer : " + answer);
     }
