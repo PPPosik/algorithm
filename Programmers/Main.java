@@ -4,10 +4,13 @@ import Programmers.level3.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] jobs = {{0, 3}, {4, 3}};
+        String[] operations = {"I 7","I 5","I -5","D -1"};
 
-        int answer = new Prob42627().solution(jobs);
+        int[] answer = new Prob42628().solution(operations);
 
-        System.out.println("answer : " + answer);
+        System.out.print("answer : ");
+        for(int n : answer) {
+            System.out.print(n + " ");
+        }
     }
 }
