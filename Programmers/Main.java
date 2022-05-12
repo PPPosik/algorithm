@@ -4,10 +4,9 @@ import Programmers.level3.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] key = {{1, 1}, {0, 0}};
-        int[][] lock = {{1, 0}, {1, 1}};
+        int[][] jobs = {{0, 3}, {4, 3}};
 
-        boolean answer = new Prob60059().solution(key, lock);
+        int answer = new Prob42627().solution(jobs);
 
         System.out.println("answer : " + answer);
     }
