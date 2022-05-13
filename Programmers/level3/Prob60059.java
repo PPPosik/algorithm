@@ -1,7 +1,5 @@
 package Programmers.level3;
 
-import java.util.ArrayList;
-
 public class Prob60059 {
     public boolean solution(int[][] key, int[][] lock) {
         int[][] newKey = generateKey(key, lock.length);

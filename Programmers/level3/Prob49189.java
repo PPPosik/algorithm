@@ -22,7 +22,7 @@ public class Prob49189 {
             list.get(e[1]).add(e[0]);
         }
 
-        Queue<Integer> queue = new LinkedList();
+        Queue<Integer> queue = new LinkedList<>();
         queue.offer(1);
         depth[1] = 0;
 
