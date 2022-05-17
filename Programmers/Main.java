@@ -4,9 +4,12 @@ import Programmers.level3.*;
 
 public class Main {
     public static void main(String[] args) {
-        String[] timetable = {"08:00", "08:01", "08:02", "08:03"};
-        String answer = new Prob17678().solution(1, 1, 5, timetable);
+        String[][] tickets = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
+        String[] answer = new Prob43164().solution(tickets);
 
-        System.out.print("answer : " + answer);
+        System.out.print("answer : ");
+        for(String s : answer) {
+            System.out.print(s + " ");
+        }
     }
 }
