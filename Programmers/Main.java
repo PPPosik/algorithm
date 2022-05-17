@@ -4,15 +4,9 @@ import Programmers.level3.*;
 
 public class Main {
     public static void main(String[] args) {
-        String[] enroll = {"john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"};
-        String[] referral = {"-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"};
-        String[] seller = {"young", "john", "tod", "emily", "mary"};
-        int[] amount = {12, 4, 2, 5, 10};
-        int[] answer = new Prob77486().solution(enroll, referral, seller, amount);
+        String[] timetable = {"08:00", "08:01", "08:02", "08:03"};
+        String answer = new Prob17678().solution(1, 1, 5, timetable);
 
-        System.out.print("answer : ");
-        for(int n : answer) {
-            System.out.print(n + " ");
-        }
+        System.out.print("answer : " + answer);
     }
 }
