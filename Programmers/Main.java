@@ -4,8 +4,8 @@ import Programmers.level3.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] routes = { { -20, -15 }, { -14, -5 }, { -18, -13 }, { -5, -3 } };
-        int answer = new Prob42884().solution(routes);
+        String[] words = {"hot", "dot", "dog", "lot", "log", "cog"};
+        int answer = new Prob43163().solution("hit", "cog", words);
 
         System.out.print("answer : " + answer);
     }
