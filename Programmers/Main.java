@@ -4,11 +4,9 @@ import Programmers.level3.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[] answer = new Prob12936().solution(3, 5);
+        int[][] results = {{4, 3}, {4, 2}, {3, 2}, {1, 2}, {2, 5}};
+        int answer = new Prob49191().solution(5, results);
 
-        System.out.print("answer : ");
-        for(int n : answer) {
-            System.out.print(n + " ");
-        }
+        System.out.print("answer : " + answer);
     }
 }
