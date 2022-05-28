@@ -1,29 +1,35 @@
 package Programmers.level3;
 
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.Arrays;
 
 public class Prob12927 {
     public long solution(int n, int[] works) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+        int sum = 0;
 
-        for (int work : works) {
-            queue.offer(work);
+        Arrays.sort(works);
+        for(int work : works) {
+            sum += work;
         }
 
-        while (n > 0 && !queue.isEmpty()) {
-            int value = queue.poll() - 1;
+        while(n > 0 && sum > 0) {
+            for(int i = works.length - 1; i >= 0; i--) {
+                if(i == 0) {
+                    works[i]--;
+                    n--;
+                    sum--;
+                } else if(works[i] > works[i-1]) {
+                    works[i]--;
+                    n--;
+                    sum--;
 
-            if (value > 0) {
-                queue.add(value);
+                    break;
+                }
             }
-
-            n--;
         }
 
         long answer = 0;
-        while (!queue.isEmpty()) {
-            answer += Math.pow(queue.poll(), 2);
+        for(int work : works) {
+            answer += Math.pow(work, 2);
         }
 
         return answer;
