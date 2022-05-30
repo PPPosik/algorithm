@@ -1,22 +1,25 @@
 package Programmers.level3;
 
-import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Prob12987 {
     public int solution(int[] A, int[] B) {
+        PriorityQueue<Integer> queue1 = new PriorityQueue<>();
+        PriorityQueue<Integer> queue2 = new PriorityQueue<>();
         int answer = 0;
 
-        Arrays.sort(A);
-        Arrays.sort(B);
+        for (int i = 0; i < A.length; i++) {
+            queue1.offer(A[i]);
+            queue2.offer(B[i]);
+        }
 
-        int i = 0, j = 0;
-        while (i < A.length && j < B.length) {
-            if (A[i] < B[j]) {
+        while (!queue1.isEmpty() && !queue2.isEmpty()) {
+            if (queue1.peek() < queue2.peek()) {
                 answer++;
-                i++;
-                j++;
+                queue1.poll();
+                queue2.poll();
             } else {
-                j++;
+                queue2.poll();
             }
         }
 
